@@ -1,7 +1,9 @@
-const Classes = () => {
-  return (
-    <div>Classes</div>
-  )
-}
+import { FC } from "react";
 
-export default Classes
+interface PagePros {}
+
+const Classes: FC<PagePros> = () => {
+  return <div>Classes</div>;
+};
+
+export default Classes;

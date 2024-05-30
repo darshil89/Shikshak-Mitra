@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import { FC } from "react";
 
-const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+interface PagePros {}
+const Profile: FC<PagePros> = () => {
+  return <div>Profile</div>;
+};
 
-export default Profile
+export default Profile;

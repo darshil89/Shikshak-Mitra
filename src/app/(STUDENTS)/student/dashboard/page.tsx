@@ -5,7 +5,7 @@ import Card from "@/app/(ADMIN)/adminComponents/card/card";
 
 
 interface PagePros {}
-const AdminDashboard: FC<PagePros> = async () => {
+const StudentDashboard: FC<PagePros> = async () => {
 
   return (
     <div className={styles.wrapper}>
@@ -21,4 +21,4 @@ const AdminDashboard: FC<PagePros> = async () => {
   );
 };
 
-export default AdminDashboard;
+export default StudentDashboard;

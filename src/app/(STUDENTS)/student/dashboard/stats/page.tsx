@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import { FC } from "react";
 
-const Stats = () => {
-  return (
-    <div>Stats</div>
-  )
-}
+interface PagePros {}
+const Stats: FC<PagePros> = () => {
+  return <div>Stats</div>;
+};
 
-export default Stats
+export default Stats;

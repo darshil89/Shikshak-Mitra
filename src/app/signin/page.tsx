@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const SignIn = () => {
   const handleSignIn = async () => {
     await signIn("google");
   };
@@ -51,4 +51,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignIn;

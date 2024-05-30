@@ -1,6 +1,8 @@
 import React from 'react'
+import { FC } from "react";
 
-const Topic = () => {
+interface PagePros {}
+const Topic:FC<PagePros> = () => {
   return (
     <div>Topic</div>
   )
