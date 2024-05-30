@@ -4,8 +4,8 @@ import styles from "../../../css/dashboard.module.css";
 import Navbar from "../adminComponents/navbar/Navbar";
 import Sidebar from "../adminComponents/sidebar/Sidebar";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { authOptions } from "@/app/libs/auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

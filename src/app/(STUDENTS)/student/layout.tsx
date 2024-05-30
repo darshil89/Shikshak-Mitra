@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "../../globals.css";
 import styles from "../../../css/dashboard.module.css";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Sidebar from "../studentComponents/sidebar/Sidebar";
 import Navbar from "../studentComponents/navbar/Navbar";
+import { authOptions } from "@/app/libs/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
