@@ -1,13 +1,13 @@
-#One Stop For Students
+## One Stop For Students
 
 This project offers an ideal solution for college, school, and university students and teachers by providing a comprehensive, one-stop platform. Our system is designed to enhance the educational experience for both students and faculty by integrating several key features, including:
 
-1.Smart Attendance Tracking: Efficiently manage attendance with real-time tracking and eligibility verification.
-2.Class and Subject Access: Easily access class-wise subjects along with detailed notes and information for each class.
-3.Comprehensive Resource Management: Organize and retrieve educational resources effortlessly.
-4.Enhanced Communication: Foster better communication between students and teachers through integrated messaging and notification systems.
-5.Performance Monitoring: Monitor academic performance and progress through detailed analytics and reports.
-6.This platform aims to streamline administrative tasks, improve classroom management, and support the academic success of students by providing all necessary tools in a single, user-friendly interface.
+ - Smart Attendance Tracking: Efficiently manage attendance with real-time tracking and eligibility verification.
+ - Class and Subject Access: Easily access class-wise subjects along with detailed notes and information for each class.
+ - Comprehensive Resource Management: Organize and retrieve educational resources effortlessly.
+ - Enhanced Communication: Foster better communication between students and teachers through integrated messaging and notification systems.
+ - Performance Monitoring: Monitor academic performance and progress through detailed analytics and reports.
+ - This platform aims to streamline administrative tasks, improve classroom management, and support the academic success of students by providing all necessary tools in a single, user-friendly interface.
 
 
 ## Table of Contents
