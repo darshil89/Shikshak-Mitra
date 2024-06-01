@@ -4,8 +4,15 @@ import { trpc } from "../../trpc-client/client";
 
 export default function Home() {
   const hi = trpc.hello.useQuery({ text: "Darshil Mahraur" });
-  if(hi.isLoading) return <div>Loading...</div>
-  if(hi.error) return <div>Error: {hi.error.message}</div>
+
+  const { data, mutate, isSuccess } = trpc.createUser.useMutation();
+
+  if (isSuccess) {
+    console.log(data);
+  }
+
+  if (hi.isLoading) return <div>Loading...</div>;
+  if (hi.error) return <div>Error: {hi.error.message}</div>;
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <div className="z-10 w-full max-w-5xl items-center font-mono text-sm lg:flex">
@@ -15,6 +22,17 @@ export default function Home() {
         </p>
       </div>
       <div className="mt-5">Hello {hi.data?.text}</div>
+      <button
+        onClick={() =>
+          mutate({
+            name: "test",
+            email: "test12@gmail.com",
+            password: "123456",
+          })
+        }
+      >
+        Create User
+      </button>
     </main>
   );
 }
