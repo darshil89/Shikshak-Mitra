@@ -21,11 +21,11 @@ export default function Home() {
           <code className="font-mono font-bold">with our platform</code>
         </p>
       </div>
-      {hi.isLoading && <div className="mt-5 mb-5 font-bold text-4xl">Loading...</div>}
-      {hi.data && <div className="mt-5 mb-5 font-bold text-4xl">Hello {hi.data?.text}</div>}
+      {hi.isLoading && <div className="mt-5 mb-3 font-bold text-4xl">Loading...</div>}
+      {hi.data && <div className="mt-5 mb-3 font-bold text-4xl">I'm a response {hi.data?.text}</div>}
 
       {isSuccess && (
-        <div className="mt-5">User created with name {data.name}</div>
+        <div className="mt-3 text-xl">Hello <span className="font-semibold">{data.name}</span></div>
       )}
       {!data && (
         <form
