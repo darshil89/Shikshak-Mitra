@@ -1,9 +1,11 @@
 "use client";
 
 import { trpc } from "../../trpc-client/client";
+import { useState } from "react";
 
 export default function Home() {
-  const hi = trpc.hello.useQuery({ text: "Darshil Mahraur" });
+  const [name, setName] = useState("");
+  const hi = trpc.hello.useQuery({ text: "From TRPC" });
 
   const { data, mutate, isSuccess } = trpc.createUser.useMutation();
 
@@ -11,8 +13,6 @@ export default function Home() {
     console.log(data);
   }
 
-  if (hi.isLoading) return <div>Loading...</div>;
-  if (hi.error) return <div>Error: {hi.error.message}</div>;
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <div className="z-10 w-full max-w-5xl items-center font-mono text-sm lg:flex">
@@ -21,18 +21,37 @@ export default function Home() {
           <code className="font-mono font-bold">with our platform</code>
         </p>
       </div>
-      <div className="mt-5">Hello {hi.data?.text}</div>
-      <button
-        onClick={() =>
-          mutate({
-            name: "test",
-            email: "test12@gmail.com",
-            password: "123456",
-          })
-        }
-      >
-        Create User
-      </button>
+      {hi.isLoading && <div>Loading...</div>}
+      {hi.data && <div className="mt-5">Hello {hi.data?.text}</div>}
+
+      {isSuccess && (
+        <div className="mt-5">User created with name {data.name}</div>
+      )}
+      {!data && (
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            mutate({
+              name: name,
+            });
+          }}
+        >
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Submit
+          </button>
+        </form>
+      )}
     </main>
   );
 }

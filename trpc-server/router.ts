@@ -19,15 +19,11 @@ export const appRouter = router({
     .input(
       z.object({
         name: z.string(),
-        email: z.string(),
-        password: z.string(),
       })
     )
     .mutation((opts) => {
       return {
         name: opts.input.name,
-        email: opts.input.email,
-        password: opts.input.password,
       };
     }),
 });
