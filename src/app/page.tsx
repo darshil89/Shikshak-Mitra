@@ -1,4 +1,11 @@
+"use client";
+
+import { trpc } from "../../trpc-client/client";
+
 export default function Home() {
+  const hi = trpc.hello.useQuery({ text: "Darshil Mahraur" });
+  if(hi.isLoading) return <div>Loading...</div>
+  if(hi.error) return <div>Error: {hi.error.message}</div>
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <div className="z-10 w-full max-w-5xl items-center font-mono text-sm lg:flex">
@@ -7,9 +14,7 @@ export default function Home() {
           <code className="font-mono font-bold">with our platform</code>
         </p>
       </div>
-      <div className="mt-5">
-        Hello world
-      </div>
+      <div className="mt-5">Hello {hi.data?.text}</div>
     </main>
   );
 }
