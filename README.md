@@ -40,7 +40,8 @@ This project offers an ideal solution for college, school, and university studen
 
 ## Technologies and Stacks Used
 
-- Next.js Full Stack
+- Next.js
+- TRPC
 - Prisma Database ORM
 - NextAuth for Authentication
 - TypeScript
