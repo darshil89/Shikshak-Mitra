@@ -27,9 +27,6 @@ This project offers an ideal solution for college, school, and university studen
 - [Monitoring and Logging](#monitoring-and-logging) 📊
 - [Performance Optimization](#performance-optimization) ⚡
 - [Security Best Practices](#security-best-practices) 🔐
-- [Troubleshooting and FAQs](#troubleshooting-and-faqs) ❓
-- [Conclusion](#conclusion) 📝
-- [References](#references) 📚
 
 ## Introduction
 
