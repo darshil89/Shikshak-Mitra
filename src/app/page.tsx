@@ -21,7 +21,7 @@ export default function Home() {
           <code className="font-mono font-bold">with our platform</code>
         </p>
       </div>
-      {hi.isLoading && <div>Loading...</div>}
+      {hi.isLoading && <div className="mt-5">Loading...</div>}
       {hi.data && <div className="mt-5">Hello {hi.data?.text}</div>}
 
       {isSuccess && (
