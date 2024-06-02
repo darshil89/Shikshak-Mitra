@@ -1,6 +1,6 @@
 // trpc-server/router.ts
 
-import { router, publicProcedure } from "./index";
+import { router, publicProcedure, protectedProcedure, createCallerFactory } from "./index";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -23,9 +23,19 @@ export const appRouter = router({
     )
     .mutation((opts) => {
       return {
-        name: opts.input.name,
+        name : opts.input.name
       };
+    }),
+
+    darshil: protectedProcedure
+    .query(() => {
+     return {
+        text: 'This is a secret message!'
+     }
     }),
 });
 
 export type AppRouter = typeof appRouter;
+
+export const createCaller = createCallerFactory(appRouter);
+

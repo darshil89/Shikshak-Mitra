@@ -1,11 +1,22 @@
+// "use client";
 import { studentCards } from "@/app/libs/data";
 import styles from "../../../../css/dashboard.module.css";
 import { FC } from "react";
 import Card from "@/app/(ADMIN)/adminComponents/card/card";
-
+import { api } from "../../../../../trpc-client/server-client";
+// import { trpc } from "../../../../../trpc-client/client";
 
 interface PagePros {}
 const StudentDashboard: FC<PagePros> = async () => {
+  // const darshil = trpc.darshil.useQuery();
+
+  // console.log(darshil.data?.text);
+
+  const d = api.then((api) => {
+    return api.darshil();
+  })
+
+  console.log((await d));
 
   return (
     <div className={styles.wrapper}>
