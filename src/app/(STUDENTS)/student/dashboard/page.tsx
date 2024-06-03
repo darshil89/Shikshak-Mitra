@@ -8,15 +8,16 @@ import { api } from "../../../../../trpc-client/server-client";
 
 interface PagePros {}
 const StudentDashboard: FC<PagePros> = async () => {
+  //client side method
   // const darshil = trpc.darshil.useQuery();
 
   // console.log(darshil.data?.text);
 
-  const d = api.then((api) => {
-    return api.darshil();
-  })
+  //server side method
 
-  console.log((await d));
+  const d = (await api).darshil();
+
+  console.log(await d);
 
   return (
     <div className={styles.wrapper}>

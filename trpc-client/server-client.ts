@@ -17,4 +17,6 @@ async function create() {
   return createCaller(context);
 }
 
-export const api = create();
+ const d = create();
+
+ export const api = d.then()
