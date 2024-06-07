@@ -2,7 +2,6 @@
 
 import { trpc } from "../../trpc-client/client";
 import { useState } from "react";
-import Navbar from "./components/Navbar";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -16,7 +15,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <Navbar />
+      
 
       <section className="relative py-12 overflow-hidden bg-black sm:pb-16 lg:pb-20 xl:pb-24">
         <div className="px-4 mx-auto relativea sm:px-6 lg:px-8 max-w-7xl">
