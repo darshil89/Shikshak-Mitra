@@ -13,14 +13,14 @@ const Navbar: FC = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="shrink-0">
-              <a href="#" title="" className="flex">
+              <Link href="/" className="flex">
                 <Image
                   width={100}
                   height={100}
                   src="/assets/logo/one_Stop.png"
                   alt="logo"
                 />
-              </a>
+              </Link>
             </div>
 
             <div className="flex md:hidden">
