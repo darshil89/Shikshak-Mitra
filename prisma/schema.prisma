@@ -17,15 +17,98 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  createdClasses Class[]        @relation("ClassCreatedBy")
+  studentClasses StudentClass[]
+  courses        Course[]       @relation("TeacherCourses")
+  attendances    Attendance[]
+  marks          Mark[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
 
 enum Role {
   student
   admin
   teacher
+}
+
+model Course {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  code        String
+  teacherId   String       @db.ObjectId
+  classes     Class[]
+  attendances Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teacher User  @relation("TeacherCourses", fields: [teacherId], references: [id], onDelete: Cascade)
+  Mark    Mark?
+}
+
+model Class {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  day            String
+  time           String
+  courseId       String         @db.ObjectId
+  createdBy      String         @db.ObjectId
+  studentClasses StudentClass[]
+  attendances    Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  creator User   @relation("ClassCreatedBy", fields: [createdBy], references: [id], onDelete: Cascade)
+}
+
+model Attendance {
+  id        String           @id @default(auto()) @map("_id") @db.ObjectId
+  date      DateTime
+  status    AttendanceStatus
+  classId   String           @db.ObjectId
+  courseId  String           @unique @db.ObjectId
+  studentId String           @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  class   Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
+  course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  student User   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+enum AttendanceStatus {
+  present
+  absent
+}
+
+model Mark {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  score     Float
+  studentId String @db.ObjectId
+  courseId  String @unique @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  student User   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+// Intermediate model for many-to-many relation between Class and User (students)
+model StudentClass {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  userId  String @db.ObjectId
+  classId String @db.ObjectId
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  class Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, classId])
 }
 
 // just for google auth 
