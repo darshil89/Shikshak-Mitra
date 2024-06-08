@@ -23,11 +23,13 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/signin");
+    redirect("/");
   }
 
+
+
   if (session && session.user.role !== "student") {
-    redirect("/admin/dashboard");
+    redirect(`${session.user.role}/dashboard`);
   }
   return (
     <div className={styles.container}>

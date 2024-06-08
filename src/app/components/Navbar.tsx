@@ -3,10 +3,38 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
+import { signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface NavBarProps {}
 
 const Navbar: FC = () => {
+  const handleSignIn = async () => {
+    await signIn("google");
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
+  const { data: session, status } = useSession();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(session?.user.role);
+    if (session && session.user.role === "admin") {
+      router.push("/admin/dashboard");
+    }
+    if (session && session.user.role === "student") {
+      router.push("/student/dashboard");
+    }
+    if (session && session.user.role === "teacher") {
+      router.push("/teacher/dashboard");
+    }
+  }, [session, router]);
   return (
     <>
       <header className="py-4 bg-black sm:py-6" x-data="{expanded: false}">
@@ -67,6 +95,13 @@ const Navbar: FC = () => {
                 className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
               >
                 {" "}
+                Dashboard
+              </Link>
+              <Link
+                href="/feature"
+                className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
+              >
+                {" "}
                 Features{" "}
               </Link>
 
@@ -78,19 +113,32 @@ const Navbar: FC = () => {
                 Support{" "}
               </Link>
             </nav>
-
-            <div className="relative hidden md:items-center md:justify-center md:inline-flex group">
-              <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
-              <a
-                href="#"
-                title=""
-                className="relative inline-flex items-center justify-center px-6 py-2 text-base font-normal text-white bg-black border border-transparent rounded-full"
-                role="button"
-              >
-                {" "}
-                Login{" "}
-              </a>
-            </div>
+            {!session && (
+              <>
+                <div className="relative hidden md:items-center md:justify-center md:inline-flex group">
+                  <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
+                  <button
+                    onClick={handleSignIn}
+                    className="relative inline-flex items-center justify-center px-6 py-2 text-base font-normal text-white bg-black border border-transparent rounded-full"
+                  >
+                    Login
+                  </button>
+                </div>
+              </>
+            )}
+            {session && (
+              <>
+                <div className="relative hidden md:items-center md:justify-center md:inline-flex group">
+                  <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
+                  <button
+                    onClick={handleSignOut}
+                    className="relative inline-flex items-center justify-center px-6 py-2 text-base font-normal text-white bg-black border border-transparent rounded-full"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </header>

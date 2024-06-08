@@ -1,6 +1,6 @@
-import  { AuthOptions } from "next-auth";
+import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const prisma = new PrismaClient();
@@ -15,12 +15,16 @@ export const authOptions: AuthOptions = {
       profile(profile) {
         console.log("profile", profile);
         if (profile.email.endsWith("@gmail.com") === true) {
-          console.log("your admin email = ", profile.email);
-          profile.role = "admin";
+          console.log("your teacher email = ", profile.email);
+          profile.role = Role.teacher
         }
         if (profile.email.endsWith("@hiremeclub.com") === true) {
-          console.log("your college email = ", profile.email);
-          profile.role = "student";
+          console.log("your admin email = ", profile.email);
+          profile.role = Role.admin
+        }
+        if (profile.email.endsWith("@dsce.edu.in") === true) {
+          console.log("your user email = ", profile.email);
+          profile.role = Role.student
         }
         return {
           id: profile.sub,
