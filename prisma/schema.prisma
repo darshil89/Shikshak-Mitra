@@ -20,38 +20,12 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  //for admin 
-  courses Course[] @relation("CourseAdmin")
-  classes Class[]  @relation("ClassAdmin")
 }
 
 enum Role {
   student
   admin
   teacher
-}
-
-//1st ,  admin will create the course 
-model Course {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  code         String
-  teacherEmail String
-  classes      Class[]
-  adminId      String  @db.ObjectId
-  admin        User    @relation(fields: [adminId], references: [id], name: "CourseAdmin")
-}
-
-// 2nd  , admin will create the classes 
-model Class {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  day      String
-  time     String
-  period   Int
-  courseId String @db.ObjectId
-  course   Course @relation(fields: [courseId], references: [id])
-  adminId  String @db.ObjectId
-  admin    User   @relation(fields: [adminId], references: [id], name: "ClassAdmin")
 }
 
 // just for google auth 

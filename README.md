@@ -122,3 +122,30 @@ This project offers an ideal solution for college, school, and university studen
 
 - Securing the Application
 - Data Protection and Privacy
+
+
+
+
+
+<!-- //1st ,  admin will create the course 
+model Course {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  code         String
+  teacherEmail String
+  classes      Class[]
+  adminId      String  @db.ObjectId
+  admin        User    @relation(fields: [adminId], references: [id], name: "CourseAdmin")
+}
+
+// 2nd  , admin will create the classes 
+model Class {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  day      String
+  time     String
+  period   Int
+  courseId String @db.ObjectId
+  course   Course @relation(fields: [courseId], references: [id])
+  adminId  String @db.ObjectId
+  admin    User   @relation(fields: [adminId], references: [id], name: "ClassAdmin")
+} -->
