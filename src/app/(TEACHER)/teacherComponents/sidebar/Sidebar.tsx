@@ -37,12 +37,6 @@ const menuItems = [
         icon: <MdShoppingBag />,
       },
       {
-        title: "Routine",
-        path: "/teacher/dashboard/routine",
-        icon: <MdShoppingBag />,
-      },
-
-      {
         title: "Students",
         path: "/admin/dashboard/allStudents",
         icon: <MdSupervisedUserCircle />,
