@@ -4,8 +4,8 @@ import "../../globals.css";
 import styles from "../../../css/dashboard.module.css";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
-// import Sidebar from "../studentComponents/sidebar/Sidebar";
-// import Navbar from "../studentComponents/navbar/Navbar";
+import Sidebar from "../teacherComponents/sidebar/Sidebar";
+import Navbar from "../teacherComponents/navbar/Navbar";
 import { authOptions } from "@/app/libs/auth";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,9 +31,9 @@ export default async function RootLayout({
   }
   return (
     <div className={styles.container}>
-      <div className={styles.menu}>{/* <Sidebar /> */}</div>
+      <div className={styles.menu}><Sidebar /></div>
       <div className={styles.content}>
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
       </div>
     </div>
