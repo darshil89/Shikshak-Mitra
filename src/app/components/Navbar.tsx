@@ -23,6 +23,8 @@ const Navbar: FC = () => {
 
   const router = useRouter();
 
+  const role = session?.user.role;
+
   useEffect(() => {
     console.log(session?.user.role);
     if (session && session.user.role === "admin") {
@@ -90,13 +92,17 @@ const Navbar: FC = () => {
             </div>
 
             <nav className="hidden ml-10 mr-auto space-x-10 lg:ml-20 lg:space-x-12 md:flex md:items-center md:justify-start">
-              <Link
-                href="/feature"
-                className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-              >
-                {" "}
-                Dashboard
-              </Link>
+              {session && (
+                <>
+                  <Link
+                    href={`${role}/dashboard`}
+                    className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
+                  >
+                    {" "}
+                    Dashboard
+                  </Link>
+                </>
+              )}
               <Link
                 href="/feature"
                 className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"

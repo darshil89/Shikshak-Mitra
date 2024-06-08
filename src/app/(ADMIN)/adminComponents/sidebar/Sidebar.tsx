@@ -1,21 +1,13 @@
 import Image from "next/image";
 import styles from "../../../../css/sidebar.module.css";
-import {
-  MdDashboard,
-  MdSupervisedUserCircle,
-  MdShoppingBag,
-  MdAttachMoney,
-  MdWork,
-  MdAnalytics,
-  MdPeople,
-  MdOutlineSettings,
-  MdHelpCenter,
-  MdLogout,
-} from "react-icons/md";
+import { MdDashboard, MdClass } from "react-icons/md";
+import { MdGroups } from "react-icons/md";
+
+import { SiCoursera } from "react-icons/si";
+
 import { CgProfile } from "react-icons/cg";
 import MenuLink from "./menulink/Menulink";
 import { getSession } from "@/utils/Session";
-
 
 const menuItems = [
   {
@@ -32,29 +24,28 @@ const menuItems = [
         icon: <CgProfile />,
       },
       {
-        title: "Classes",
+        title: "Create Course",
+        path: "/admin/dashboard/course",
+        icon: <SiCoursera />,
+      },
+      {
+        title: "Create Class",
         path: "/admin/dashboard/classes",
-        icon: <MdShoppingBag />,
+        icon: <MdClass />,
       },
       {
-        title: "Routine",
-        path: "/admin/dashboard/routine",
-        icon: <MdShoppingBag />,
-      },
+        title: "Check",
+        path:"/admin/dashboard/check",
+        icon: <MdGroups />
 
-      {
-        title: "Students",
-        path: "/admin/dashboard/allStudents",
-        icon: <MdSupervisedUserCircle />,
-      },
+      }
     ],
   },
 ];
 
 const Sidebar = async () => {
-
   const session = await getSession();
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
