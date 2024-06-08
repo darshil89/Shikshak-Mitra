@@ -36,7 +36,7 @@ const Navbar: FC = () => {
     if (session && session.user.role === "teacher") {
       router.push("/teacher/dashboard");
     }
-  }, [session, router]);
+  }, [session]);
   return (
     <>
       <header className="py-4 bg-black sm:py-6" x-data="{expanded: false}">
