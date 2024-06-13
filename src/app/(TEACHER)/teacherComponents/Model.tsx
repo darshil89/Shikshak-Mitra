@@ -10,16 +10,16 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
   const [uploadedImageUrls, setUploadedImageUrls] = useState<string>("");
-  const [file, setFile] = useState<File | null>(null);
-
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  const [notesFile, setNotesFile] = useState<File | null>(null);
-  const [notesUrl, setNotesUrl] = useState<string>("");
+  //state for uploading notes
+  const [localNotesUrl, setLocalNotesUrl] = useState<string>("");
+  const [notesPublicUrl, setNotesPublicUrl] = useState<File | null>(null);
 
   //make an array of strings
   const [answers, setAnswers] = useState<string[]>([]);
 
+  //method to handle the image upload
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -40,17 +40,17 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
         const uploadImageData = await uploadResponse.json();
         console.log(uploadImageData);
         setUploadedImageUrls(uploadImageData.secure_url);
-        console.log("hogya");
       } catch (error) {
         console.error("Error uploading image:", error);
       }
     }
   };
 
+  //method to handle the notes upload
   const handleNotesChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setNotesUrl(URL.createObjectURL(file));
+      setLocalNotesUrl(URL.createObjectURL(file));
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "jx3jfkqs");
@@ -64,27 +64,25 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
           }
         );
         const uploadImageData = await uploadResponse.json();
-        console.log(uploadImageData);
-        setNotesFile(uploadImageData.secure_url);
-        console.log("hogya");
-        console.log(notesFile);
+        setNotesPublicUrl(uploadImageData.secure_url);
+        console.log(uploadImageData.secure_url);
       } catch (error) {
         console.error("Error uploading image:", error);
       }
     }
   };
 
-  const handleUpload = async (event: FormEvent) => {
-    event.preventDefault();
+  const handleUpload = async (
+    e : FormEvent<HTMLFormElement>,
+   courseId: string,
+    classId: string
+  ) => {
+    e.preventDefault();
     if (uploadedImageUrls) {
       // Handle file upload logic here
       console.log("ja rha hai");
 
       console.log(uploadedImageUrls);
-
-      alert("Attendance and Notes uploaded successfully");
-
-      handleClose();
 
       try {
         const res = await fetch("http://127.0.0.1:8000/get_attendance", {
@@ -98,21 +96,27 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
         console.log(res);
 
         // convert this res array to object to array of string
+        // getting the names of the students from ai model and storing it in the answers array
         const names = res.map((obj: any) => obj.Name);
         setAnswers(names);
-        console.log(answers);
+
+        console.log(names);
+
+        // calling the mark attendance function to mark the attendance
+
+        // const date = new Date();
+
+        // const students = answers;
+
+        // mutate({ date, classId, courseId, students });
+
+        alert("Attendance and Notes uploaded successfully");
+
+        handleClose();
       } catch (error) {
         console.error("Error uploading image:", error);
       }
     }
-  };
-
-  const handleMarkAttendance = async ({ courseId, classId }: ModalProps) => {
-    const date = new Date();
-
-    const students = answers;
-
-    mutate({ date, classId, courseId, students });
   };
 
   const { data, mutate, isSuccess } =
@@ -130,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
             &times;
           </button>
         </div>
-        <form onSubmit={handleUpload}>
+        <form onSubmit={(e)=> handleUpload (e, courseId, classId )}>
           <label className="text-gray-700 font-medium">Upload Image</label>
           <input
             type="file"
@@ -156,6 +160,15 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
             accept="application/pdf"
             onChange={handleNotesChange}
           />
+          {localNotesUrl && (
+            <embed
+              src={localNotesUrl}
+              type="application/pdf"
+              width="100%"
+              height="400px"
+              className="mb-5"
+            />
+          )}
 
           <button
             type="submit"
