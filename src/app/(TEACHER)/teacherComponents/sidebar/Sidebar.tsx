@@ -27,19 +27,14 @@ const menuItems = [
         icon: <MdDashboard />,
       },
       {
-        title: "Profile",
-        path: "/teacher/dashboard/profile",
-        icon: <CgProfile />,
-      },
-      {
         title: "Classes",
         path: "/teacher/dashboard/classes",
         icon: <MdShoppingBag />,
       },
       {
-        title: "Students",
-        path: "/admin/dashboard/allStudents",
-        icon: <MdSupervisedUserCircle />,
+        title: "Upload marks",
+        path: "/teacher/dashboard/marks",
+        icon: <MdShoppingBag />,
       },
     ],
   },

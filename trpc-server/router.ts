@@ -1,41 +1,24 @@
 // trpc-server/router.ts
 
-import { router, publicProcedure, protectedProcedure, createCallerFactory } from "./index";
+import {
+  router,
+  publicProcedure,
+  protectedProcedure,
+  createCallerFactory,
+} from "./index";
 import { z } from "zod";
+import { AdminRouter } from "./routers/admin";
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+import { TeacherRouter } from "./routers/teacher";
+
+const prisma = new PrismaClient();
 
 export const appRouter = router({
-  hello: publicProcedure
-    .input(
-      z.object({
-        text: z.string(),
-      })
-    )
-    .query((opts) => {
-      return {
-        text: opts.input.text,
-      };
-    }),
-  createUser: publicProcedure
-    .input(
-      z.object({
-        name: z.string(),
-      })
-    )
-    .mutation((opts) => {
-      return {
-        name : opts.input.name
-      };
-    }),
-
-    darshil: protectedProcedure
-    .query(() => {
-     return {
-        text: 'This is a secret message!'
-     }
-    }),
+  AdminRouter,
+  TeacherRouter
 });
 
 export type AppRouter = typeof appRouter;
 
 export const createCaller = createCallerFactory(appRouter);
-

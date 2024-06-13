@@ -1,0 +1,5 @@
+flask
+pickle
+numpy
+flask_cors
+scikit-learn==1.2.2

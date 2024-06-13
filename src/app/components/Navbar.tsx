@@ -7,6 +7,7 @@ import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface NavBarProps {}
 
@@ -14,6 +15,8 @@ const Navbar: FC = () => {
   const handleSignIn = async () => {
     await signIn("google");
   };
+
+  const path = usePathname();
 
   const handleSignOut = async () => {
     await signOut();
@@ -27,14 +30,17 @@ const Navbar: FC = () => {
 
   useEffect(() => {
     console.log(session?.user.role);
-    if (session && session.user.role === "admin") {
-      router.push("/admin/dashboard");
-    }
-    if (session && session.user.role === "student") {
-      router.push("/student/dashboard");
-    }
-    if (session && session.user.role === "teacher") {
-      router.push("/teacher/dashboard");
+
+    if (path == "/") {
+      if (session && session.user.role === "admin") {
+        router.push("/admin/dashboard");
+      }
+      if (session && session.user.role === "student") {
+        router.push("/student/dashboard");
+      }
+      if (session && session.user.role === "teacher") {
+        router.push("/teacher/dashboard");
+      }
     }
   }, [session]);
   return (
@@ -47,7 +53,7 @@ const Navbar: FC = () => {
                 <Image
                   width={100}
                   height={100}
-                  src="/assets/logo/one_Stop.png"
+                  src="/assets/logo/onestop.png"
                   alt="logo"
                 />
               </Link>

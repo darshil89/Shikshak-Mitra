@@ -5,24 +5,22 @@ import { useState } from "react";
 
 export default function Home() {
   const [name, setName] = useState("");
-  const hi = trpc.hello.useQuery({ text: "From TRPC" });
+  // const hi = trpc.hello.useQuery({ text: "From TRPC" });
 
-  const { data, mutate, isSuccess } = trpc.createUser.useMutation();
+  // const { data, mutate, isSuccess } = trpc.createUser.useMutation();
 
-  if (isSuccess) {
-    console.log(data);
-  }
+  // if (isSuccess) {
+  //   console.log(data);
+  // }
 
   return (
     <div className="">
-      
-
       <section className="relative py-12 overflow-hidden bg-black sm:pb-16 lg:pb-20 xl:pb-24">
         <div className="px-4 mx-auto relativea sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid items-center grid-cols-1 gap-y-12 lg:grid-cols-2 gap-x-16">
             <div>
               <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-5xl xl:text-6xl">
-                Shikshak-Mitra: Your Ultimate Campus Companion
+                EduGate: Your Ultimate Campus Companion
               </h1>
               <p className="mt-4 text-lg font-normal text-gray-400 sm:mt-8">
                 Dive into StudentHub, where your campus life is seamlessly

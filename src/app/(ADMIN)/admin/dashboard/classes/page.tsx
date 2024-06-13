@@ -1,34 +1,42 @@
-"use client"
+"use client";
 import React from "react";
-import { FC,useState } from "react";
+import { FC, useState } from "react";
+import { trpc } from "../../../../../../trpc-client/client";
 
 interface PagePros {}
 
 const courses = [
-  { name: "Mathematics", code: "22CS082" },
-  { name: "Physics", code: "22PHY011" },
-  { name: "Chemistry", code: "22CHM032" },
-  { name: "Biology", code: "22BIO041" },
-  { name: "Computer Science", code: "22CS101" }
+  { name: "Maths", code: "22MATS26" },
+  { name: "Physics", code: "22PHY26" },
+  { name: "Chemistry", code: "22CHE26" },
+  { name: "Computer Science", code: "22COM26" },
 ];
 
 const Classes: FC<PagePros> = () => {
   const [day, setDay] = useState("");
-  const [timeRange, setTimeRange] = useState({ start: "08:00", end: "10:00" });
+  const [startTime, setStartTime] = useState("00:00");
+  const [endTime, setEndTime] = useState("00:00");
   const [course, setCourse] = useState("");
+  const [period, setPeriod] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    setSubmitted(true);
-  };
+  const { data, mutate, isSuccess } =
+    trpc.AdminRouter.createClass.useMutation();
+  if (data) console.log(data);
 
   return (
-    <div className="flex justify-center p-6 bg-gray-900 text-gray-200 animate__animated animate__fadeIn">
-      <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 shadow-lg rounded-lg">
-        <h2 className="text-2xl font-bold text-center">Add Class to Timetable</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
+    <div className="flex justify-center p-6  text-gray-200 animate__animated animate__fadeIn">
+      <div className="w-full max-w-md p-8 space-y-6  shadow-lg rounded-lg">
+        <h2 className="text-2xl font-bold text-center">
+          Add Class to Timetable
+        </h2>
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            mutate({ day, startTime, endTime, course, period });
+          }}
+        >
           <div>
             <label className="block text-gray-400">Day</label>
             <select
@@ -36,14 +44,15 @@ const Classes: FC<PagePros> = () => {
               value={day}
               onChange={(e) => setDay(e.target.value)}
             >
-              <option value="" disabled>Select a day</option>
+              <option value="" disabled>
+                Select a day
+              </option>
               <option value="Monday">Monday</option>
               <option value="Tuesday">Tuesday</option>
               <option value="Wednesday">Wednesday</option>
               <option value="Thursday">Thursday</option>
               <option value="Friday">Friday</option>
               <option value="Saturday">Saturday</option>
-              <option value="Sunday">Sunday</option>
             </select>
           </div>
 
@@ -53,14 +62,14 @@ const Classes: FC<PagePros> = () => {
               <input
                 type="time"
                 className="w-full p-2 bg-gray-700 text-gray-300 rounded-lg focus:outline-none"
-                value={timeRange.start}
-                onChange={(e) => setTimeRange({ ...timeRange, start: e.target.value })}
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
               />
               <input
                 type="time"
                 className="w-full p-2 bg-gray-700 text-gray-300 rounded-lg focus:outline-none"
-                value={timeRange.end}
-                onChange={(e) => setTimeRange({ ...timeRange, end: e.target.value })}
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
               />
             </div>
           </div>
@@ -72,13 +81,28 @@ const Classes: FC<PagePros> = () => {
               value={course}
               onChange={(e) => setCourse(e.target.value)}
             >
-              <option value="" disabled>Select a course</option>
+              <option value="" disabled>
+                Select a course
+              </option>
               {courses.map((course) => (
                 <option key={course.code} value={course.code}>
                   {course.name} - {course.code}
                 </option>
               ))}
             </select>
+          </div>
+
+          {/* //period input */}
+          <div>
+            <label className="block text-gray-400">Period</label>
+            <input
+              type="number"
+              className="w-full p-2 mt-1 bg-gray-700 text-gray-300 rounded-lg focus:outline-none"
+              value={period}
+              onChange={(e) => setPeriod(parseInt(e.target.value))}
+              placeholder="Enter period"
+              required
+            />
           </div>
 
           <button

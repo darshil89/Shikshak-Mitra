@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import styles from "../../../css/dashboard.module.css";
-import Navbar from "../adminComponents/navbar/Navbar";
 import Sidebar from "../adminComponents/sidebar/Sidebar";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
@@ -34,7 +33,7 @@ export default async function RootLayout({
         <Sidebar />
       </div>
       <div className={styles.content}>
-        <Navbar />
+        
         {children}
       </div>
     </div>

@@ -37,23 +37,18 @@ const menuItems: MenuItemType[] = [
         icon: <MdDashboard />,
       },
       {
-        title: "Profile",
-        path: "/student/dashboard/profile",
-        icon: <CgProfile />,
-      },
-      {
         title: "Classes",
         path: "/student/dashboard/classes",
         icon: <MdShoppingBag />,
       },
       {
-        title: "Routine",
-        path: "/student/dashboard/routine",
-        icon: <MdShoppingBag />,
+        title: "Careers",
+        path: "/student/dashboard/careers",
+        icon: <IoIosStats />,
       },
       {
-        title: "Statistics",
-        path: "/student/dashboard/stats",
+        title: "Alumini",
+        path: "/student/dashboard/alumini",
         icon: <IoIosStats />,
       },
     ],

@@ -10,14 +10,14 @@ generator client {
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
+  email         String?   @unique @db.ObjectId
   emailVerified DateTime?
   image         String?
   role          Role
   accounts      Account[]
   sessions      Session[]
 
-  createdClasses Class[]        @relation("ClassCreatedBy")
+  
   studentClasses StudentClass[]
   courses        Course[]       @relation("TeacherCourses")
   attendances    Attendance[]
@@ -34,27 +34,30 @@ enum Role {
 }
 
 model Course {
-  id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  code        String
-  teacherId   String       @db.ObjectId
-  classes     Class[]
-  attendances Attendance[]
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  courseName   String
+  courseCode   String
+  teacherEmail String
+  classes      Class[]
+  attendances  Attendance[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  teacher User  @relation("TeacherCourses", fields: [teacherId], references: [id], onDelete: Cascade)
+  adminId String @db.ObjectId
+  admin   User   @relation("TeacherCourses", fields: [adminId], references: [id], onDelete: Cascade)
   Mark    Mark?
 }
 
 model Class {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
   day            String
-  time           String
+  startTime      String
+  endTime        String
+  period         Int
+  courseCode     String
   courseId       String         @db.ObjectId
-  createdBy      String         @db.ObjectId
+
   studentClasses StudentClass[]
   attendances    Attendance[]
 
@@ -62,7 +65,7 @@ model Class {
   updatedAt DateTime @updatedAt
 
   course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  creator User   @relation("ClassCreatedBy", fields: [createdBy], references: [id], onDelete: Cascade)
+  
 }
 
 model Attendance {
@@ -71,14 +74,14 @@ model Attendance {
   status    AttendanceStatus
   classId   String           @db.ObjectId
   courseId  String           @unique @db.ObjectId
-  studentId String           @db.ObjectId
+  studentEmail String           @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   class   Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
   course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  student User   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  student User   @relation(fields: [studentEmail], references: [email], onDelete: Cascade)
 }
 
 enum AttendanceStatus {
