@@ -71,7 +71,7 @@ model Attendance {
   date      DateTime
   status    AttendanceStatus
   classId   String           @db.ObjectId
-  courseId  String           @unique @db.ObjectId
+  courseId  String           @db.ObjectId
   studentId String           @db.ObjectId
 
   createdAt DateTime @default(now())

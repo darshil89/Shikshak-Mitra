@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await getServerSession(authOptions);
 
-  console.log("from trpc (context)", session);
+  // console.log("from trpc (context)", session);
 
   return {
     prisma,
@@ -18,7 +18,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 
 export const createTRPCServer = async () => {
   const session = await getServerSession(authOptions);
-  console.log("from trpc (context) server ", session);
+  // console.log("from trpc (context) server ", session);
 
   return {
     prisma,

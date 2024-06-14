@@ -18,9 +18,6 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
   const [localNotesUrl, setLocalNotesUrl] = useState<string>("");
   const [notesPublicUrl, setNotesPublicUrl] = useState<File | null>(null);
 
-  //make an array of strings
-  const [answers, setAnswers] = useState<string[]>([]);
-
   //method to handle the image upload
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -83,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
     if (uploadedImageUrls) {
       // Handle file upload logic here
 
-      console.log(uploadedImageUrls);
+      console.log(uploadedImageUrls + " " + notesPublicUrl);
 
       try {
         const res = await fetch("http://127.0.0.1:8000/get_attendance", {
@@ -96,30 +93,40 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
 
         // convert this res array to object to array of string
         // getting the names of the students from ai model and storing it in the answers array
-        const names = res.map((obj: any) => obj.Name);
-        setAnswers(names);
+        const names = await res.map((obj: any) => obj.Name);
 
-        console.log("names of the candidate who are present = ",names);
+        console.log("names of the candidate who are present = ", names);
 
         // calling the mark attendance function to mark the attendance
 
-        // const date = new Date();
+        const date = new Date();
 
-        // const students = answers;
+        const students = names;
 
-        // mutate({ date, classId, courseId, students });
+        if (students.length === 0) {
+          alert("No students found in the image");
+          return;
+        } else {
+          mutate({ date, classId, courseId, students });
+        }
 
-        alert("Attendance and Notes uploaded successfully");
-
-        handleClose();
+        // handleClose();
       } catch (error) {
         console.error("Error uploading image:", error);
       }
     }
   };
 
-  const { data, mutate, isSuccess } =
+  const { data, mutate, isSuccess , isLoading } =
     trpc.TeacherRouter.markAttendance.useMutation();
+
+    if(isLoading){
+      alert("Loading")
+    } 
+
+    if(isSuccess){
+      alert("Attendance marked successfully")
+    }
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
@@ -181,9 +188,9 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                       />
                     </svg>
