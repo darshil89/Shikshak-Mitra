@@ -22,6 +22,8 @@ const page: FC<TeacherDashboard> = async () => {
   const students = (await api).TeacherRouter.allStudentData();
   const studentData: StudentData = await students;
 
+  console.log(studentData);
+
   return (
     <div className="flex min-h-screen bg-gray-900 text-gray-200 animate__animated animate__fadeIn">
       <div className="flex-grow">

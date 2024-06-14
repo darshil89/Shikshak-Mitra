@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { Role } from "@prisma/client";
 
 interface NavBarProps {}
 
@@ -32,13 +33,13 @@ const Navbar: FC = () => {
     console.log(session?.user.role);
 
     if (path == "/") {
-      if (session && session.user.role === "admin") {
+      if (session && session.user.role === Role.admin) {
         router.push("/admin/dashboard");
       }
-      if (session && session.user.role === "student") {
+      if (session && session.user.role === Role.student) {
         router.push("/student/dashboard");
       }
-      if (session && session.user.role === "teacher") {
+      if (session && session.user.role === Role.teacher) {
         router.push("/teacher/dashboard");
       }
     }

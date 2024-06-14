@@ -10,14 +10,13 @@ generator client {
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique @db.ObjectId
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
   role          Role
   accounts      Account[]
   sessions      Session[]
 
-  
   studentClasses StudentClass[]
   courses        Course[]       @relation("TeacherCourses")
   attendances    Attendance[]
@@ -50,13 +49,13 @@ model Course {
 }
 
 model Class {
-  id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  day            String
-  startTime      String
-  endTime        String
-  period         Int
-  courseCode     String
-  courseId       String         @db.ObjectId
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  day        String
+  startTime  String
+  endTime    String
+  period     Int
+  courseCode String
+  courseId   String @db.ObjectId
 
   studentClasses StudentClass[]
   attendances    Attendance[]
@@ -64,8 +63,7 @@ model Class {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model Attendance {
@@ -74,14 +72,14 @@ model Attendance {
   status    AttendanceStatus
   classId   String           @db.ObjectId
   courseId  String           @unique @db.ObjectId
-  studentEmail String           @db.ObjectId
+  studentId String           @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   class   Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
   course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  student User   @relation(fields: [studentEmail], references: [email], onDelete: Cascade)
+  student User   @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 enum AttendanceStatus {

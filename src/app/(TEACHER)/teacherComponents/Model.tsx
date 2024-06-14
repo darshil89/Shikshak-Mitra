@@ -99,7 +99,7 @@ const Modal: React.FC<ModalProps> = ({ handleClose, courseId, classId }) => {
         const names = res.map((obj: any) => obj.Name);
         setAnswers(names);
 
-        console.log(names);
+        console.log("names of the candidate who are present = ",names);
 
         // calling the mark attendance function to mark the attendance
 

@@ -74,9 +74,9 @@ const options: ChartOptions<'line'> = {
 
 
 interface PagePros {}
-const StudentDashboard: FC<PagePros> = async () => {
+const StudentDashboard: FC<PagePros> = () => {
   const notes = [
-   " https://res.cloudinary.com/dptrkbl3o/image/upload/v1717903588/images_upload/dggbj13mecwqsnw4hn1o.pdf",
+   "https://res.cloudinary.com/dptrkbl3o/image/upload/v1717903588/images_upload/dggbj13mecwqsnw4hn1o.pdf",
    "https://res.cloudinary.com/dptrkbl3o/image/upload/v1717904076/images_upload/mdlnq81bdx59d7zhky70.pdf",
    "https://res.cloudinary.com/dptrkbl3o/image/upload/v1717904040/images_upload/mxp3vzhr9rkpfqgrkjj2.pdf"
   ];
