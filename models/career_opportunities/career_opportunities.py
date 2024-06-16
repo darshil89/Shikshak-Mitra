@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
-import requests
+import requests 
 
 
 def fetch_linkedin_opportunities(specific_interest):
