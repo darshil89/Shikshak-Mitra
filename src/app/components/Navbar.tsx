@@ -32,14 +32,14 @@ const Navbar: FC = () => {
   useEffect(() => {
     console.log(session?.user.role);
 
-    if (path == "/") {
-      if (session && session.user.role === Role.admin) {
+    if (session) {
+      if (session.user.role === Role.admin) {
         router.push("/admin/dashboard");
       }
-      if (session && session.user.role === Role.student) {
+      if (session.user.role === Role.student) {
         router.push("/student/dashboard");
       }
-      if (session && session.user.role === Role.teacher) {
+      if (session.user.role === Role.teacher) {
         router.push("/teacher/dashboard");
       }
     }
