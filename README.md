@@ -106,12 +106,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -135,7 +129,7 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://cloud.google.com/docs/authentication/api-keys](https://cloud.google.com/docs/authentication/api-keys)
 2. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
@@ -144,7 +138,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Enter your API in `.env`
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
@@ -202,9 +196,9 @@ Don't forget to give the project a star! Thanks again!
 
 ### Top contributors:
 
-<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
-</a>
+[<img src="https://github.com/{{ haideraqeeb }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ haideraqeeb }}">{{ haideraqeeb }}</a></sub>](https://github.com/{{ haideraqeeb }}/{{ repository }}
+[<img src="https://github.com/{{ GautamCoder4019k }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ GautamCoder4019k }}">{{ GautamCoder4019k }}</a></sub>](https://github.com/{{ GautamCoder4019k }}/{{ repository }}
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -222,29 +216,12 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Darshil Mahraur - [@your_linkedin](https://www.linkedin.com/in/darshil-mahraur-821216259/) - darshilmahraur3@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+Project Link: [https://github.com/darshil89/Shikshak-Mitra](https://github.com/darshil89/Shikshak-Mitra)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
