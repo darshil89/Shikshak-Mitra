@@ -199,6 +199,7 @@ Don't forget to give the project a star! Thanks again!
 [<img src="https://github.com/{{ haideraqeeb }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ haideraqeeb }}">{{ haideraqeeb }}</a></sub>](https://github.com/{{ haideraqeeb }}/{{ repository }}
 [<img src="https://github.com/{{ GautamCoder4019k }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ GautamCoder4019k }}">{{ GautamCoder4019k }}</a></sub>](https://github.com/{{ GautamCoder4019k }}/{{ repository }}
 
+[<img src="https://github.com/{{ haideraqeeb }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ haideraqeeb }}">{{ haideraqeeb }}</a></sub>](https://github.com/{{ haideraqeeb }}/{{ Shikshak-Mitra }}
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
