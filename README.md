@@ -1,7 +1,7 @@
 # **Shikshak Mitra** 🚀
 
 ---
-![Ticket](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW1namo3NHczY2RqZXVqMGU1cjc2YnBtM3pjNXZiNHc2NGh5YnB5YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5LBxKy4LrJOGP8n79X/giphy.gif)
+![Education](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3JtenJwYXJ5enc3dTNsdW1xaHl0Ymt0dThubzFkM2x1d2l2ZzJ4cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VZUhn04QSs0AmsHRic/giphy.gif)
 ---
 
 ## **Overview**
